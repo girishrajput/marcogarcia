@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-solace-magenta: #D81B60;
+  --color-solace-blue: #0070AD;
+  --color-solace-darkgray: #333333;
 
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --font-sans: "Inter", "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2937;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +23,53 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+label {
+  font-weight: 600;
+}
+
+.form-floating {
+  position: relative;
+}
+
+.form-floating input,
+.form-floating textarea,
+.form-floating select {
+  width: 100%;
+  padding: 1rem 0.75rem 0.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background: transparent;
+}
+
+.form-floating label {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.75rem;
+  color: #6b7280;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: #fff;
+  transform-origin: left top;
+  padding: 0 0.25rem;
+}
+
+.form-floating input:focus + label,
+.form-floating textarea:focus + label,
+.form-floating select:focus + label,
+.form-floating input:not(:placeholder-shown) + label,
+.form-floating textarea:not(:placeholder-shown) + label,
+.form-floating select:not(:placeholder-shown) + label {
+  transform: translateY(-0.75rem) scale(0.85);
+  color: #0070AD;
 }
