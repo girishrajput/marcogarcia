@@ -1,71 +1,65 @@
-import Link from 'next/link';
-import { Heart, Mail, MapPin, Phone } from 'lucide-react';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import React from 'react';
+import { MapPin, Globe, Camera } from "lucide-react";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-20 pb-10">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-16">
-        {/* Company Info */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2 text-white">
-            <Link href="/" className="flex items-center gap-2">
-            <img src="/images/solace_footer.png" className='w-48 h-auto' alt="Solace Healthcare Logo" />
-          </Link>
-          </div>
-          <p className="text-sm leading-relaxed">
-            Leading hospice and home health agency in Bakersfield, CA. Committed to dignity, excellence, and compassionate care.
+    <>
+     {/* Experience Stats */}
+      <section id="experience" className="bg-black text-white py-40 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-20 text-center">
+          {[
+            { label: "Clinical Experience", val: "15+" },
+            { label: "Successful Cases", val: "8k+" },
+            { label: "Technology Grade", val: "A+" },
+            { label: "Patient Retention", val: "99%" }
+          ].map((stat, i) => (
+            <div key={i}>
+              <p className="text-6xl font-serif mb-4 tracking-tighter">{stat.val}</p>
+              <p className="text-zinc-500 uppercase tracking-[0.3em] text-[9px]">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    <footer id="contact" className="bg-black text-white py-24 px-6 border-t border-white/5">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-24">
+        
+        {/* Branding Column */}
+        <div className="space-y-8">
+          <div className="text-xl font-serif tracking-tighter">Everwell Dental Bakersfield</div>
+          <p className="text-zinc-500 text-xs font-light max-w-xs">
+            Bakersfield's premier destination for artisanal dentistry and clinical excellence.
           </p>
-          <div className="flex gap-4">
-            <Link href="#" className="p-2 bg-slate-900 rounded-full hover:text-white transition">
-              <FaFacebook size={18} />
-            </Link>
-            <Link href="#" className="p-2 bg-slate-900 rounded-full hover:text-white transition">
-              <FaInstagram size={18} />
-            </Link>
+          <div className="flex gap-6">
+            <Camera size={18} className="text-zinc-600 hover:text-white transition cursor-pointer" />
+            <Globe size={18} className="text-zinc-600 hover:text-white transition cursor-pointer" />
           </div>
         </div>
 
-        {/* Services */}
+        {/* Location Column */}
         <div>
-          <h4 className="text-white font-bold mb-6">Services</h4>
-          <ul className="space-y-4 text-sm">
-            <li><Link href="/hospice-care" className="hover:text-teal-400 transition">Hospice Care</Link></li>
-            <li><Link href="/home-health" className="hover:text-teal-400 transition">Home Health Care</Link></li>
-            <li><Link href="#" className="hover:text-teal-400 transition">Respite Care</Link></li>
-          </ul>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] mb-10 text-zinc-300">The Studio</h4>
+          <p className="text-zinc-500 text-[11px] tracking-widest uppercase flex items-center">
+            <MapPin size={14} className="mr-4 text-zinc-600" /> Bakersfield, CA 93301
+          </p>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h4 className="text-white font-bold mb-6">Quick Links</h4>
-          <ul className="space-y-4 text-sm">
-            <li><Link href="/about" className="hover:text-teal-400 transition">About Us</Link></li>
-            <li><Link href="/contact" className="hover:text-teal-400 transition">Contact</Link></li>
-            <li><Link href="#" className="hover:text-teal-400 transition">Careers</Link></li>
-          </ul>
+        {/* Quick Links Column */}
+        <div className="text-zinc-500 text-[11px] tracking-widest uppercase space-y-4">
+          <h4 className="text-[10px] uppercase tracking-[0.3em] mb-10 text-zinc-300">Navigation</h4>
+          <a href="#about" className="block hover:text-white transition">About</a>
+          <a href="#services" className="block hover:text-white transition">Services</a>
+          <a href="#experience" className="block hover:text-white transition">Experience</a>
         </div>
 
-        {/* Contact Info */}
-        <div className="space-y-4">
-          <h4 className="text-white font-bold mb-6">Contact Us</h4>
-          <div className="flex gap-3 items-start text-sm">
-            <MapPin size={18} className="text-solace-cyan shrink-0" />
-            <span>3955 Coffee Rd Suite 101, Bakersfield, CA 93308</span>
-          </div>
-          <div className="flex gap-3 items-center text-sm">
-            <Phone size={18} className="text-solace-cyan" />
-            <span>(661) 843-7787</span>
-          </div>
-          <div className="flex gap-3 items-center text-sm">
-            <Mail size={18} className="text-solace-cyan" />
-            <span>info@solacehc.com</span>
-          </div>
-        </div>
       </div>
-      <p className="text-center mt-10 text-xs tracking-widest text-slate-500 uppercase">
-        © 2026 SOLACE HEALTHCARE INC. ALL RIGHTS RESERVED.
-      </p>
+
+      {/* Copyright Bar */}
+      <div className="max-w-7xl mx-auto mt-32 pt-10 border-t border-white/5 text-[8px] uppercase tracking-[0.5em] text-zinc-800">
+        © {new Date().getFullYear()} Dr. Marco Garcia | All Rights Reserved
+      </div>
     </footer>
+    </>
   );
-}
+};
+
+export default Footer;

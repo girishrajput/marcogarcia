@@ -1,70 +1,106 @@
 "use client";
-import { useState } from 'react';
-import Link from 'next/link';
-import { Phone, Menu, Heart, X, Clock } from 'lucide-react';
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+// FIX: Import Link from next/link, not lucide-react
+import Link from "next/link"; 
+import { Menu, X } from "lucide-react";
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Hospice Care', href: '/hospice-care' },
-    { name: 'Home Health', href: '/home-health' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "Our Services", href: "/our-services" },
+    { name: "Meet the Doctor", href: "/meet-the-doctor" },
+    { name: "New Patients Guide", href: "/new-patients-guide" },
+    { name: "Patient Stories", href: "/patient-stories" },
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 shadow-sm">
-      {/* Top Bar */}
-      <div className='bg-solace-blue'>
-      <div className=" text-white py-2 px-6 flex justify-between items-center text-xs md:text-sm font-medium container mx-auto">
-        <div className="flex items-center gap-2">
-          <Clock size={14} className="animate-pulse" />
-          <span>24/7 EMERGENCY SERVICE</span>
-        </div>
-        <Link href="tel:6618437787" className="flex items-center gap-2 hover:underline">
-          <Phone size={14} /> (661) 843-7787
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${
+      isScrolled ? 'bg-white py-4 shadow-sm' : 'bg-transparent py-8'
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        
+        {/* Logo - Now correctly using next/link */}
+        <Link 
+          href="/" 
+          className={`text-2xl font-serif tracking-tighter transition-colors duration-500 ${
+            isScrolled ? 'text-black' : 'text-white'
+          }`}
+        >
+          Everwell Dental <span className="font-light italic text-sm tracking-widest">Bakersfield</span>
         </Link>
-      </div>
-      </div>
 
-      {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-md border-b border-slate-100">
-        <div className="container mx-auto px-6 h-20 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/solacelogo.png" className='w-48 h-auto' alt="Solace Healthcare Logo" />
-          </Link>
-
-          {/* Desktop */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="text-slate-600 hover:text-solace-cyan font-semibold transition-colors">
-                {link.name}
-              </Link>
-            ))}
-            <Link href="/contact" className="bg-solace-magenta text-white px-6 py-2.5 rounded-full hover:bg-solace-blue transition shadow-md">
-              Referral
+        {/* Desktop Navigation */}
+        <div className={`hidden md:flex space-x-6 text-[10px] uppercase tracking-[0.3em] transition-colors duration-500 ${
+          isScrolled ? 'text-black' : 'text-white'
+        }`}>
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name} 
+              href={link.href} 
+              className="hover:opacity-40 transition-opacity"
+            >
+              {link.name}
             </Link>
-          </div>
+          ))}
+        </div>
 
-          {/* Mobile Toggle */}
-          <button className="md:hidden text-slate-900" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X /> : <Menu />}
+        {/* CTA & Mobile Toggle */}
+        <div className="flex items-center gap-6">
+          <Link href="/book-a-visit" className={`hidden md:block px-8 py-2.5 text-[10px] uppercase tracking-[0.2em] border transition duration-500 ${
+            isScrolled 
+              ? 'border-black text-black hover:bg-black hover:text-white' 
+              : 'border-white text-white hover:bg-white hover:text-black'
+          }`}>
+            Book a Visit
+          </Link>
+          
+          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? (
+              <X className={isScrolled ? "text-black" : "text-white"} size={20} />
+            ) : (
+              <Menu className={isScrolled ? "text-black" : "text-white"} size={20} />
+            )}
           </button>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden bg-white border-t p-6 flex flex-col gap-4 animate-in slide-in-from-top">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-lg font-medium text-slate-800">
-                {link.name}
-              </Link>
-            ))}
-          </div>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute top-full left-0 w-full bg-white border-b border-zinc-100 overflow-hidden md:hidden shadow-2xl"
+          >
+            <div className="flex flex-col items-center py-12 space-y-8">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className="text-black text-[10px] uppercase tracking-[0.3em]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
         )}
-      </nav>
-    </header>
+      </AnimatePresence>
+    </nav>
   );
-}
+};
+
+export default Navbar;

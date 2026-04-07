@@ -1,74 +1,38 @@
 import React from 'react';
-import { MapPin, HeartPulse, Headphones, ArrowRight } from 'lucide-react';
 
-const SolaceHealthHero = () => {
-  const features = [
-    {
-      icon: <MapPin className="w-8 h-8 text-pink-600" />,
-      title: "Local Excellence",
-      description: "Solace Health Care is a trusted name for quality home health care and hospice services in Bakersfield, CA.",
-    },
-    {
-      icon: <HeartPulse className="w-8 h-8 text-pink-600" />,
-      title: "Patient Centric",
-      description: "We believe in hearing and addressing all your health care needs with qualified staff committed to your safety.",
-    },
-    {
-      icon: <Headphones className="w-8 h-8 text-pink-600" />,
-      title: "24/7 Support",
-      description: "Our multilingual caregivers address psychological, social, and spiritual care for a home-like environment.",
-    },
-  ];
-
+const About = () => {
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-16 px-4 sm:px-6 lg:px-8">
-      {/* Abstract Background Element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-sky-400 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-pink-400 blur-[120px]" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto text-center">
-        {/* Header Section */}
-        <h2 className="text-sm font-bold tracking-widest text-sky-600 uppercase mb-3">
-          Welcome to
-        </h2>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-          SOLACE HEALTH <span className="text-sky-500">CARE, INC.</span>
-        </h1>
-        
-        <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed mb-12">
-          Providing professional and certified services for hospice and home health care. 
-          Our clinicians help deliver the best home health care services tailored to 
-          <span className="font-semibold text-slate-800"> fit every need in Bakersfield, CA.</span>
-        </p>
-
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="group relative p-8 bg-white border border-slate-100 rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-pink-200"
-            >
-              <div className="mb-6 inline-flex p-4 rounded-xl bg-pink-50 transition-colors group-hover:bg-pink-100">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-4">{feature.title}</h3>
-              <p className="text-slate-600 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+    <section id="about" className="py-32 md:py-56 px-6 max-w-7xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-24 items-center">
+        {/* Image Side */}
+        <div className="bg-zinc-100 aspect-[4/5] grayscale overflow-hidden group relative">
+          <img 
+            src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80&w=1500" 
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" 
+            alt="Dr. Marco Garcia" 
+          />
         </div>
 
-        {/* Action Button */}
-        <button className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg hover:shadow-pink-200/50 active:scale-95">
-          MORE ABOUT US
-          <ArrowRight className="w-5 h-5" />
-        </button>
+        {/* Text Side */}
+        <div className="space-y-10">
+          <h2 className="text-4xl md:text-6xl font-serif">
+            Dr. Marco Garcia <br />
+            <span className="italic opacity-60">Architect of Smiles</span>
+          </h2>
+          <p className="text-zinc-500 leading-relaxed text-lg font-light">
+            Located in Bakersfield, our clinic bridges the gap between medical excellence and artisanal beauty. 
+            Dr. Garcia approaches each procedure as a unique architectural challenge, ensuring that every 
+            restoration is both functionally perfect and aesthetically sublime.
+          </p>
+          <div className="pt-10 border-t border-zinc-100">
+            <p className="font-serif italic text-2xl text-zinc-800">
+              "Luxury is a commitment to the highest standard of care."
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default SolaceHealthHero;
+export default About;

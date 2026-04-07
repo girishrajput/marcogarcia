@@ -218,7 +218,7 @@ export default function LuxuryDentalLanding() {
       <footer id="contact" className="bg-black text-white py-24 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-24">
           <div className="space-y-8">
-            <div className="text-xl font-serif tracking-tighter">GARCIA DENTAL</div>
+            <div className="text-xl font-serif tracking-tighter">Everwell Dental Bakersfield</div>
             <p className="text-zinc-500 text-xs font-light max-w-xs">Bakersfield's premier destination for artisanal dentistry.</p>
             <div className="flex gap-6">
               <Camera size={18} className="text-zinc-600 hover:text-white transition cursor-pointer" />

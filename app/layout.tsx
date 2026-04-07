@@ -1,7 +1,8 @@
 import "./globals.css";
 // These will work once the folder is moved to the project root
 
-import MainHome from "@/components/home/MainHome";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 export const metadata = {
@@ -20,9 +21,9 @@ export default function RootLayout({
 
 {/* <MainHome /> */}
 
-        {/* <Header /> */}
+        <Header />  
         <main className="">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

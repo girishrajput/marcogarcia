@@ -7,10 +7,10 @@ type InnerHeaderProps = {
 
 const InnerHeader = ({ title, subtitle }: InnerHeaderProps) => {
     return (
-        <section className="relative bg-solace-magenta py-20 px-6 text-center text-white overflow-hidden">
+        <section className="relative bg-gray-700 pt-28 pb-16 px-6 text-center text-white overflow-hidden">
             {/* Background Texture Overlay */}
             <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-            
+
             {/* Content Container */}
             <div className="relative z-10 max-w-5xl mx-auto">
                 <h1 className="text-3xl md:text-5xl font-bold mb-4">
