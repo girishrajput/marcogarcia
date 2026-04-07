@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link'; // Import Link
 import { 
   Sparkles, 
   ShieldCheck, 
@@ -17,88 +18,66 @@ import {
 } from "lucide-react";
 
 const Services = ({ items = [] }) => {
-  // 1. Default data moved outside or handled via fallback
-  // const defaultServices = [
-  //   { 
-  //     title: "Cosmetic Dentistry", 
-  //     icon: <Sparkles size={22} strokeWidth={1.5} />, 
-  //     desc: "Porcelain veneers and aesthetic bonding tailored to your facial symmetry." 
-  //   },
-  //   { 
-  //     title: "Dental Implants", 
-  //     icon: <ShieldCheck size={22} strokeWidth={1.5} />, 
-  //     desc: "Titanium-reinforced restorative solutions for structural integrity." 
-  //   },
-  //   { 
-  //     title: "Teeth Whitening", 
-  //     icon: <Smile size={22} strokeWidth={1.5} />, 
-  //     desc: "Advanced laser-whitening treatments delivering luminous results." 
-  //   },
-  //   { 
-  //     title: "General Care", 
-  //     icon: <Stethoscope size={22} strokeWidth={1.5} />, 
-  //     desc: "Preventative diagnostics utilizing the latest imaging technology." 
-  //   },
-  //   { 
-  //     title: "Smile Makeovers", 
-  //     icon: <Heart size={22} strokeWidth={1.5} />, 
-  //     desc: "Comprehensive aesthetic overhauls designed through 3D smile design." 
-  //   },
-  //   { 
-  //     title: "Oral Health", 
-  //     icon: <Clock size={22} strokeWidth={1.5} />, 
-  //     desc: "Luxury periodontal care focused on long-term systemic wellness." 
-  //   }
-  // ];
+  
 
   const defaultServices = [
   { 
     title: "Invisalign Bakersfield", 
+    slug: "invisalign",
     icon: <Smile size={22} strokeWidth={1.5} />, 
     desc: "Discreet clear aligner systems engineered for precise orthodontic correction." 
   },
   { 
     title: "Dental Implants Bakersfield", 
+    slug: "dental-implants",
     icon: <ShieldCheck size={22} strokeWidth={1.5} />, 
     desc: "Permanent titanium implant solutions restoring function, strength, and aesthetics." 
   },
   { 
     title: "Emergency Dentist Bakersfield", 
+    slug: "emergency-dentist",
     icon: <AlertCircle size={22} strokeWidth={1.5} />, 
     desc: "Immediate dental care for urgent pain, trauma, and unexpected oral conditions." 
   },
   { 
     title: "Root Canal Bakersfield", 
+    slug: "root-canal",
     icon: <Activity size={22} strokeWidth={1.5} />, 
     desc: "Advanced endodontic procedures to preserve natural teeth and eliminate infection." 
   },
   { 
     title: "Tooth Extraction Bakersfield", 
+    slug: "tooth-extraction",
     icon: <Scissors size={22} strokeWidth={1.5} />, 
     desc: "Gentle and precise extractions ensuring minimal discomfort and optimal recovery." 
   },
   { 
     title: "Cosmetic Dentist Bakersfield", 
+    slug: "cosmetic-dentist",
     icon: <Sparkles size={22} strokeWidth={1.5} />, 
     desc: "Personalized aesthetic treatments designed to enhance smile symmetry and beauty." 
   },
   { 
     title: "Teeth Whitening", 
+    slug: "teeth-whitening",
     icon: <Sun size={22} strokeWidth={1.5} />, 
     desc: "Professional-grade whitening solutions for a brighter, more radiant smile." 
   },
   { 
     title: "Dental Crowns", 
+    slug: "dental-crowns",
     icon: <Hexagon size={22} strokeWidth={1.5} />, 
     desc: "Custom-crafted crowns restoring durability, function, and natural appearance." 
   },
   { 
     title: "Dental Fillings", 
+    slug: "dental-fillings",
     icon: <Edit3 size={22} strokeWidth={1.5} />, 
     desc: "Tooth-colored restorations designed for seamless repair and long-term protection." 
   },
   { 
     title: "Dentures", 
+    slug: "dentures",
     icon: <Users size={22} strokeWidth={1.5} />, 
     desc: "Comfortable, natural-looking dentures restoring confidence and oral functionality." 
   }
@@ -121,6 +100,7 @@ const Services = ({ items = [] }) => {
         
         <div className="grid md:grid-cols-3 gap-[1px] bg-zinc-200 border border-zinc-200">
           {displayData.map((service, i) => (
+            <Link href={`/services/${service.slug}`} key={i}>
             <motion.div 
               key={i} 
               initial={{ opacity: 0, y: 20 }}
@@ -144,6 +124,7 @@ const Services = ({ items = [] }) => {
                 Explore Treatment <ArrowRight size={14} className="ml-3 transition-transform group-hover:translate-x-1" />
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
       </div>
